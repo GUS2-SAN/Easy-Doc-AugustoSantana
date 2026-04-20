@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Página de login demonstrativa da Easy Doc." />
+    <title>Login | Easy Doc</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body class="system-page auth-page">
+    <main class="auth-shell">
+      <section class="auth-hero" aria-label="Apresentação do login">
+        <a class="system-logo" href="index.html" aria-label="Voltar para a landing page">
+          <img src="assets/images/logo-mark-light.png" alt="Easy Doc" />
+        </a>
+
+        <div class="auth-hero__content">
+          <span class="system-kicker">Portal Easy Doc</span>
+          <h1>Acesse a área operacional da sua transportadora.</h1>
+          <p>
+            Uma tela demonstrativa para reforçar o fluxo do produto, com validação no frontend,
+            microinterações e identidade visual alinhada à landing.
+          </p>
+        </div>
+
+        <a class="system-back" href="index.html">Voltar para o site</a>
+      </section>
+
+      <section class="auth-card" aria-labelledby="login-title">
+        <div class="auth-card__header">
+          <img src="assets/images/logo-mark.png" alt="Easy Doc" />
+          <div>
+            <h2 id="login-title">Entrar na conta</h2>
+            <p>Use dados fictícios para testar a validação da interface.</p>
+          </div>
+        </div>
+
+        <form id="login-form" class="compact-form" novalidate>
+          <div class="form-group">
+            <label for="login-email">E-mail</label>
+            <input id="login-email" name="email" type="email" autocomplete="email" placeholder="seu.email@empresa.com" />
+            <small class="form-error" data-error-for="login-email"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="login-password">Senha</label>
+            <div class="password-field">
+              <input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Digite sua senha" />
+              <button class="password-toggle" type="button" aria-label="Mostrar senha">Mostrar</button>
+            </div>
+            <small class="form-error" data-error-for="login-password"></small>
+          </div>
+
+          <div class="auth-options">
+            <label class="remember-check">
+              <input type="checkbox" name="remember" />
+              <span>Lembrar-me</span>
+            </label>
+            <a href="#">Esqueci minha senha</a>
+          </div>
+
+          <button class="cta-button auth-submit" type="submit">
+            <span>Entrar</span>
+          </button>
+
+          <p class="form-feedback" id="login-feedback" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <script src="assets/js/login.js"></script>
+  </body>
+</html>
