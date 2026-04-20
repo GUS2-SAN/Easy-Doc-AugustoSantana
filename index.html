@@ -102,7 +102,7 @@
     <header class="site-header">
       <div class="header-shell">
         <a class="site-logo" href="#home" aria-label="Voltar ao topo">
-          <img src="assets/images/logo-mark.png" alt="Easy Doc" />
+          <img src="assets/images/logo-mark.png?v=logo-safe-3" alt="Easy Doc" />
         </a>
 
         <button
@@ -580,11 +580,9 @@
                 <div class="form-group">
                   <label for="zip">CEP <span>*</span></label>
                   <div class="input-status">
-                    <input id="zip" name="zip" type="text" autocomplete="postal-code" inputmode="numeric" maxlength="9" placeholder="00000-000" aria-describedby="zip-status" />
+                    <input id="zip" name="zip" type="text" autocomplete="postal-code" inputmode="numeric" maxlength="9" placeholder="00000-000" />
                     <span class="field-loader" id="zip-loader" aria-hidden="true"></span>
                   </div>
-                  <button class="zip-search-button" type="button" id="zip-search">Buscar endereço</button>
-                  <small class="form-hint" id="zip-status">Digite um CEP para preencher endereço, estado e cidade automaticamente.</small>
                   <small class="form-error" data-error-for="zip"></small>
                 </div>
 
@@ -657,6 +655,6 @@
       </div>
     </footer>
 
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js?v=cep-fix-2"></script>
   </body>
 </html>
