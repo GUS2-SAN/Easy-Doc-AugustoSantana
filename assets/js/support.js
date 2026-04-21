@@ -1,11 +1,10 @@
 /**
- * support.js — Módulo da página de suporte
- *
- * Responsabilidades:
- *  1. Accordion de FAQ: garante que apenas um item fique aberto por vez
- *  2. Acessibilidade: foco gerenciado via teclado no accordion
- *
- * Não polui o escopo global: todo o estado vive dentro da IIFE.
+  support.js — Módulo da página de suporte
+ 
+  Responsabilidades:
+   1. Accordion de FAQ: garante que apenas um item fique aberto por vez, usando o evento nativo `toggle` para acessibilidade.
+   2. Modularidade: cada funcionalidade é encapsulada em funções independentes, permitindo fácil manutenção e extensão futura.
+   3. Robustez: tolera a ausência de elementos específicos no DOM, evitando erros em páginas sem FAQ.
  */
 
 (() => {
@@ -16,12 +15,12 @@
   // ============================================================
 
   /**
-   * Inicializa o comportamento de accordion exclusivo na lista de FAQ.
-   * Quando um item é aberto, todos os outros são fechados automaticamente.
-   *
-   * Utiliza o evento nativo `toggle` dos elementos `<details>`, que é
-   * disparado tanto por clique quanto por teclado — garantindo
-   * acessibilidade sem tratamento extra de eventos de teclado.
+   Inicializa o comportamento de accordion exclusivo na lista de FAQ.
+   Quando um item é aberto, todos os outros são fechados automaticamente.
+   
+   Utiliza o evento nativo `toggle` dos elementos `<details>`, que é
+   disparado tanto por clique quanto por teclado — garantindo
+   acessibilidade sem tratamento extra de eventos de teclado.
    */
   function initFaqAccordion() {
     const faqItems = /** @type {HTMLDetailsElement[]} */ ([
@@ -31,8 +30,8 @@
     if (!faqItems.length) return;
 
     /**
-     * Fecha todos os itens do accordion, exceto o item informado.
-     * @param {HTMLDetailsElement} exceptItem
+     Fecha todos os itens do accordion, exceto o item informado.
+     @param {HTMLDetailsElement} exceptItem
      */
     const closeOthers = (exceptItem) => {
       faqItems.forEach((item) => {
@@ -56,8 +55,8 @@
   // ============================================================
 
   /**
-   * Ponto de entrada: inicializa todos os comportamentos da página de suporte.
-   * Cada módulo é independente e tolera a ausência de seus elementos no DOM.
+   Ponto de entrada: inicializa todos os comportamentos da página de suporte.
+   Cada módulo é independente e tolera a ausência de seus elementos no DOM.
    */
   function init() {
     initFaqAccordion();

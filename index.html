@@ -11,13 +11,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=Readex+Pro:wght@500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Open+Sans:wght@400;600&family=Outfit:wght@500;600;700;800&family=Readex+Pro:wght@500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
     <link rel="alternate icon" type="image/png" href="assets/images/favicon.png" />
     <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
-    <link rel="stylesheet" href="assets/css/style.css?v=landing-polish-8" />
+    <link rel="stylesheet" href="assets/css/style.css?v=mobile-cta-ribbon-2" />
   </head>
   <body class="landing-page">
     <svg class="icon-sprite" aria-hidden="true" focusable="false">
@@ -130,12 +130,14 @@
         </nav>
 
         <div class="site-actions">
-          <a class="top-cta" href="#contato">Solicitar demonstração</a>
+          <a class="top-cta top-cta--image" href="#contato" aria-label="Solicitar demonstração">
+            <img src="assets/images/button-top-demo.png" alt="Solicitar demonstração" />
+          </a>
           <a href="login.html" class="action-link">
             <img class="action-link__icon" src="assets/images/icon-login.png" alt="" aria-hidden="true" />
             <span>Login</span>
           </a>
-          <a href="suporte.html" class="action-link">
+          <a href="support.html" class="action-link">
             <img class="action-link__icon" src="assets/images/icon-support.png" alt="" aria-hidden="true" />
             <span>Suporte</span>
           </a>
@@ -195,8 +197,8 @@
                 <img src="assets/images/problem-icon-secondary.png" alt="" aria-hidden="true" />
               </span>
               <p>
-                <strong>Dificuldade na obtenção de comprovantes</strong> de entrega digitais
-                de qualidade junto aos seus motoristas.
+                <span class="problem-card__line"><strong>Dificuldade na obtenção de comprovantes</strong> de entrega digitais</span>
+                <span class="problem-card__line">de qualidade junto aos seus motoristas.</span>
               </p>
             </article>
 
@@ -205,8 +207,8 @@
                 <img src="assets/images/problem-icon-primary.png" alt="" aria-hidden="true" />
               </span>
               <p>
-                <strong>Integração adequada</strong> a um sistema, para poder disponibilizar
-                informações em tempo real a seus clientes.
+                <span class="problem-card__line"><strong>Integração adequada</strong> a um sistema, para poder disponibilizar</span>
+                <span class="problem-card__line">informações em tempo real a seus clientes.</span>
               </p>
             </article>
           </div>
@@ -280,24 +282,24 @@
 
           <div class="feature-stack">
             <article class="feature-item">
-              <span class="icon-badge">
-                <svg aria-hidden="true"><use href="#icon-phone"></use></svg>
+              <span class="icon-badge icon-badge--image feature-icon">
+                <img src="assets/images/cause-icon-phone.png" alt="" aria-hidden="true" />
               </span>
               <p><strong>Dependência de fotos de celular</strong> sem um sistema que faça a validação da foto.</p>
             </article>
 
             <article class="feature-item">
-              <span class="icon-badge">
-                <svg aria-hidden="true"><use href="#icon-refresh"></use></svg>
+              <span class="icon-badge icon-badge--image feature-icon">
+                <img src="assets/images/cause-icon-refresh.png" alt="" aria-hidden="true" />
               </span>
               <p><strong>Falta de integração</strong> entre a captura de comprovantes e o sistema de gestão.</p>
             </article>
 
             <article class="feature-item">
-              <span class="icon-badge">
-                <svg aria-hidden="true"><use href="#icon-hourglass"></use></svg>
+              <span class="icon-badge icon-badge--image feature-icon">
+                <img src="assets/images/cause-icon-hourglass.png" alt="" aria-hidden="true" />
               </span>
-              <p><strong>Dificuldade em atender às exigências dos clientes</strong> por informações em tempo.</p>
+              <p>Dificuldade em <strong>atender às exigências dos clientes</strong> por informações em tempo.</p>
             </article>
           </div>
         </div>
@@ -315,8 +317,8 @@
           <div class="solution-grid">
             <div class="solution-grid__content" data-reveal>
               <article class="solution-card">
-                <span class="icon-badge">
-                  <svg aria-hidden="true"><use href="#icon-printer"></use></svg>
+                <span class="icon-badge icon-badge--image solution-icon">
+                  <img src="assets/images/solution-icon-printer.png" alt="" aria-hidden="true" />
                 </span>
                 <p>
                   Dispositivos customizados de hardware, para
@@ -326,8 +328,8 @@
               </article>
 
               <article class="solution-card">
-                <span class="icon-badge">
-                  <svg aria-hidden="true"><use href="#icon-monitor"></use></svg>
+                <span class="icon-badge icon-badge--image solution-icon">
+                  <img src="assets/images/solution-icon-monitor.png" alt="" aria-hidden="true" />
                 </span>
                 <p>
                   Um <strong>software inteligente para realizar a leitura desses documentos</strong>
@@ -336,8 +338,8 @@
               </article>
 
               <article class="solution-card">
-                <span class="icon-badge">
-                  <svg aria-hidden="true"><use href="#icon-bulb"></use></svg>
+                <span class="icon-badge icon-badge--image solution-icon">
+                  <img src="assets/images/solution-icon-bulb.png" alt="" aria-hidden="true" />
                 </span>
                 <p>
                   Esses <strong>equipamentos transformam o documento em um arquivo digital</strong>, com ótima qualidade de imagem.
@@ -352,9 +354,8 @@
           </div>
 
           <div class="section-cta" data-reveal>
-            <a class="cta-button" href="#contato">
-              <span>Solicite uma demonstração</span>
-              <svg aria-hidden="true"><use href="#icon-arrow"></use></svg>
+            <a class="cta-button cta-button--demo-image" href="#contato" aria-label="Solicite uma demonstração">
+              <img src="assets/images/button-demo-rect.png" alt="Solicite uma demonstração" />
             </a>
           </div>
         </div>
@@ -404,8 +405,8 @@
 
           <div class="process-list" data-reveal>
             <article class="process-step">
-              <span class="process-step__icon">
-                <svg aria-hidden="true"><use href="#icon-star"></use></svg>
+              <span class="process-step__icon process-step__icon--image">
+                <img src="assets/images/process-icon-star.png" alt="" aria-hidden="true" />
               </span>
               <div>
                 <h3>Passo 1 - Consultoria</h3>
@@ -414,8 +415,8 @@
             </article>
 
             <article class="process-step">
-              <span class="process-step__icon">
-                <svg aria-hidden="true"><use href="#icon-truck"></use></svg>
+              <span class="process-step__icon process-step__icon--image">
+                <img src="assets/images/process-icon-truck.png" alt="" aria-hidden="true" />
               </span>
               <div>
                 <h3>Passo 2 - Elaboração da Solução</h3>
@@ -424,8 +425,8 @@
             </article>
 
             <article class="process-step">
-              <span class="process-step__icon">
-                <svg aria-hidden="true"><use href="#icon-graduation"></use></svg>
+              <span class="process-step__icon process-step__icon--image">
+                <img src="assets/images/process-icon-graduation.png" alt="" aria-hidden="true" />
               </span>
               <div>
                 <h3>Passo 3 - Implementação e treinamento</h3>
@@ -434,8 +435,8 @@
             </article>
 
             <article class="process-step">
-              <span class="process-step__icon">
-                <svg aria-hidden="true"><use href="#icon-search"></use></svg>
+              <span class="process-step__icon process-step__icon--image">
+                <img src="assets/images/process-icon-search.png" alt="" aria-hidden="true" />
               </span>
               <div>
                 <h3>Passo 4 - Suporte contínuo</h3>
@@ -445,9 +446,8 @@
           </div>
 
           <div class="section-cta" data-reveal>
-            <a class="cta-button" href="#contato">
-              <span>Fale com um consultor</span>
-              <svg aria-hidden="true"><use href="#icon-arrow"></use></svg>
+            <a class="cta-button cta-button--consultant-image" href="#contato" aria-label="Fale com um consultor">
+              <img src="assets/images/button-consultant-rect.png" alt="Fale com um consultor" />
             </a>
           </div>
         </div>
@@ -481,8 +481,8 @@
           </div>
 
           <button class="case-link" type="button" data-video-trigger="#case-video">
-            <span class="case-link__icon">
-              <svg aria-hidden="true"><use href="#icon-play"></use></svg>
+            <span class="case-link__icon case-link__icon--image">
+              <img src="assets/images/case-play-icon.png" alt="" aria-hidden="true" />
             </span>
             <span>Assista o case da Bora Transportes completo!</span>
           </button>
@@ -497,8 +497,8 @@
             data-video-title="Vídeo do case Bora Transportes"
           >
             <img src="assets/images/bora-hq.png" alt="Fachada da Bora Transportes" />
-            <button class="play-button" type="button" aria-label="Reproduzir vídeo do case Bora Transportes">
-              <svg aria-hidden="true"><use href="#icon-play"></use></svg>
+            <button class="play-button play-button--case-image" type="button" aria-label="Reproduzir vídeo do case Bora Transportes">
+              <img src="assets/images/case-play-icon.png" alt="" aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -549,6 +549,12 @@
       </section>
 
       <section class="cta-ribbon" aria-label="Chamada para contato">
+        <div class="cta-ribbon__mobile-card" data-reveal>
+          <p>
+            A Bora Transportes superou desafios e alcançou resultados expressivos com a Easy Doc.
+            <strong>E você, está pronto para a sua transformação digital?</strong>
+          </p>
+        </div>
         <img
           class="cta-ribbon__image"
           src="assets/images/cta-banner.png?v=figma-1"
@@ -635,9 +641,8 @@
               <div class="form-footer">
                 <img class="captcha-image" src="assets/images/captcha.png" alt="Captcha visual ilustrativo" />
 
-                <button class="cta-button" type="submit" id="contact-submit">
-                  <span>Enviar solicitação</span>
-                  <svg aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                <button class="cta-button cta-button--submit-image" type="submit" id="contact-submit" aria-label="Enviar solicitação">
+                  <img src="assets/images/button-submit-request.png" alt="Enviar solicitação" />
                 </button>
               </div>
 

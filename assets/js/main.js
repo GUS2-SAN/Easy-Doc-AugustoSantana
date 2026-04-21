@@ -1,14 +1,14 @@
 /**
- * main.js — Script principal do site
- *
- * Organização:
- *  1. Tipos / JSDoc
- *  2. Configuração central
- *  3. Utilitários puros
- *  4. Módulo: Header / Navegação
- *  5. Módulo: Animações e Mídia
- *  6. Módulo: Formulário de Contato
- *  7. Bootstrap
+ main.js — Script principal do site
+ 
+ Organização:
+   1. Tipos / JSDoc
+   2. Configuração central
+   3. Utilitários puros
+   4. Módulo: Header / Navegação
+   5. Módulo: Animações e Mídia
+   6. Módulo: Formulário de Contato
+   7. Bootstrap
  */
 
 (() => {
@@ -19,39 +19,39 @@
   // ============================================================
 
   /**
-   * @typedef {Object} StateEntry
-   * @property {string} uf   - Sigla do estado (ex.: "SP")
-   * @property {string} name - Nome completo do estado
-   * @property {string[]} cities - Cidades disponíveis para seleção
+   @typedef {Object} StateEntry
+   @property {string} uf   - Sigla do estado (ex.: "SP")
+   @property {string} name - Nome completo do estado
+   @property {string[]} cities - Cidades disponíveis para seleção
+   /
+
+  /**
+   @typedef {Object} ViaCepResponse
+   @property {string} cep
+   @property {string} logradouro
+   @property {string} bairro
+   @property {string} localidade
+   @property {string} uf
+   @property {boolean} [erro]
    */
 
   /**
-   * @typedef {Object} ViaCepResponse
-   * @property {string} cep
-   * @property {string} logradouro
-   * @property {string} bairro
-   * @property {string} localidade
-   * @property {string} uf
-   * @property {boolean} [erro]
+   @typedef {Object} ZipLookupResult
+   @property {boolean} ok
+   @property {ViaCepResponse|null} data
+   @property {string} [errorMessage]
    */
 
   /**
-   * @typedef {Object} ZipLookupResult
-   * @property {boolean} ok
-   * @property {ViaCepResponse|null} data
-   * @property {string} [errorMessage]
+   @typedef {Object} ValidationResult
+   @property {boolean} isValid
+   @property {string} errorMessage
    */
 
   /**
-   * @typedef {Object} ValidationResult
-   * @property {boolean} isValid
-   * @property {string} errorMessage
-   */
-
-  /**
-   * @typedef {Object} FormValidationSummary
-   * @property {boolean} isValid
-   * @property {HTMLElement|null} firstInvalidField
+   @typedef {Object} FormValidationSummary
+   @property {boolean} isValid
+   @property {HTMLElement|null} firstInvalidField
    */
 
   // ============================================================
@@ -90,17 +90,17 @@
   ];
 
   /**
-   * Fallback local para CEPs conhecidos, usado quando a API ViaCEP
-   * não está disponível (modo offline, rate-limit, etc.).
-   * @type {Record<string, ViaCepResponse>}
+   Fallback local para CEPs conhecidos, usado quando a API ViaCEP
+   não está disponível (modo offline, rate-limit, etc.).
+   @type {Record<string, ViaCepResponse>}
    */
   const ZIP_FALLBACKS = {
     "01229010": {
-      cep: "01229-010",
-      logradouro: "Rua São Vicente de Paulo",
-      bairro: "Santa Cecília",
-      localidade: "São Paulo",
-      uf: "SP",
+      cep: "49042-423",
+      logradouro: "Rua da Independência",
+      bairro: "São Conrado",
+      localidade: "Aracaju",
+      uf: "SE",
     },
   };
 
@@ -121,9 +121,9 @@
   });
 
   /**
-   * Estado padrão do seletor de localização.
-   * A cidade padrão é a primeira da lista do estado padrão,
-   * resolvida dinamicamente para evitar acoplamento com os dados.
+   Estado padrão do seletor de localização.
+   A cidade padrão é a primeira da lista do estado padrão,
+   resolvida dinamicamente para evitar acoplamento com os dados.
    */
   const DEFAULT_UF = "SP";
 
@@ -135,18 +135,18 @@
   // ============================================================
 
   /**
-   * Remove todos os caracteres não numéricos de uma string.
-   * @param {string} value
-   * @returns {string}
+   Remove todos os caracteres não numéricos de uma string.
+   @param {string} value
+   @returns {string}
    */
   const onlyDigits = (value) => value.replace(/\D/g, "");
 
   /**
    * Cria uma versão debounced de uma função.
-   * @template {(...args: unknown[]) => void} T
-   * @param {T} fn
-   * @param {number} delayMs
-   * @returns {T}
+   @template {(...args: unknown[]) => void} T
+   @param {T} fn
+   @param {number} delayMs
+   @returns {T}
    */
   const debounce = (fn, delayMs) => {
     let timerId = null;
@@ -157,9 +157,9 @@
   };
 
   /**
-   * Aplica máscara de telefone brasileiro: (DD) NNNNN-NNNN ou (DD) NNNN-NNNN.
-   * @param {string} value
-   * @returns {string}
+   Aplica máscara de telefone brasileiro: (DD) NNNNN-NNNN ou (DD) NNNN-NNNN.
+   @param {string} value
+   @returns {string}
    */
   const maskPhone = (value) => {
     const digits = onlyDigits(value).slice(0, 11);
@@ -172,8 +172,8 @@
 
   /**
    * Aplica máscara de CEP brasileiro: NNNNN-NNN.
-   * @param {string} value
-   * @returns {string}
+   @param {string} value
+   @returns {string}
    */
   const maskZip = (value) => {
     const digits = onlyDigits(value).slice(0, 8);
@@ -185,8 +185,8 @@
   // ============================================================
 
   /**
-   * Inicializa o comportamento do header ao rolar a página.
-   * Adiciona a classe `is-scrolled` quando o scroll passa de 24px.
+   Inicializa o comportamento do header ao rolar a página.
+   Adiciona a classe `is-scrolled` quando o scroll passa de 24px.
    */
   function initHeaderScroll() {
     const header = document.querySelector(".site-header");
@@ -198,8 +198,8 @@
   }
 
   /**
-   * Inicializa o menu hambúrguer para dispositivos móveis.
-   * Gerencia o estado `is-menu-open` no header e `aria-expanded` no botão.
+   Inicializa o menu hambúrguer para dispositivos móveis.
+   Gerencia o estado `is-menu-open` no header e `aria-expanded` no botão.
    */
   function initMobileMenu() {
     const header     = document.querySelector(".site-header");
@@ -234,8 +234,8 @@
   }
 
   /**
-   * Suaviza a navegacao por ancoras compensando a altura do header fixo.
-   * Isso evita que titulos fiquem escondidos atras do menu apos o clique.
+   Suaviza a navegacao por ancoras compensando a altura do header fixo.
+   Isso evita que titulos fiquem escondidos atras do menu apos o clique.
    */
   function initAnchorNavigation() {
     const header     = document.querySelector(".site-header");
@@ -281,8 +281,8 @@
   }
 
   /**
-   * Destaca o link de navegação correspondente à seção visível na tela,
-   * usando IntersectionObserver para eficiência.
+   Destaca o link de navegação correspondente à seção visível na tela,
+   usando IntersectionObserver para eficiência.
    */
   function initSectionObserver() {
     const navLinks = /** @type {HTMLAnchorElement[]} */ ([...document.querySelectorAll(".site-nav a")]);
@@ -312,8 +312,8 @@
   // ============================================================
 
   /**
-   * Revela elementos marcados com `data-reveal` conforme entram na viewport.
-   * Em navegadores sem suporte a IntersectionObserver, exibe tudo imediatamente.
+   Revela elementos marcados com `data-reveal` conforme entram na viewport.
+   Em navegadores sem suporte a IntersectionObserver, exibe tudo imediatamente.
    */
   function initRevealOnScroll() {
     const items = /** @type {HTMLElement[]} */ ([...document.querySelectorAll("[data-reveal]")]);
@@ -339,10 +339,10 @@
   }
 
   /**
-   * Cria um iframe do YouTube configurado para autoplay.
-   * @param {string} videoId  - ID do vídeo no YouTube
-   * @param {string} [title]  - Texto acessível para o `title` do iframe
-   * @returns {HTMLIFrameElement}
+   Cria um iframe do YouTube configurado para autoplay.
+   @param {string} videoId  - ID do vídeo no YouTube
+   @param {string} [title]  - Texto acessível para o `title` do iframe
+   @returns {HTMLIFrameElement}
    */
   function createYouTubeIframe(videoId, title = "Vídeo") {
     const iframe = document.createElement("iframe");
@@ -356,9 +356,9 @@
   }
 
   /**
-   * Substitui o conteúdo de um wrapper pelo iframe do YouTube correspondente.
-   * A operação é idempotente: não remonta o iframe se já estiver montado.
-   * @param {HTMLElement} wrapper
+   Substitui o conteúdo de um wrapper pelo iframe do YouTube correspondente.
+   A operação é idempotente: não remonta o iframe se já estiver montado.
+   @param {HTMLElement} wrapper
    */
   function mountVideo(wrapper) {
     if (!wrapper || wrapper.dataset.videoMounted === "true") return;
@@ -371,8 +371,8 @@
   }
 
   /**
-   * Inicializa players de vídeo lazy (click-to-play) e botões de
-   * atalho que montam e scrollam até o vídeo-alvo.
+   Inicializa players de vídeo lazy (click-to-play) e botões de
+   atalho que montam e scrollam até o vídeo-alvo.
    */
   function initVideoEmbeds() {
     document
@@ -399,8 +399,8 @@
   }
 
   /**
-   * Duplica os itens do marquee de logos para criar o efeito de loop contínuo.
-   * A operação é idempotente via flag `data-cloned`.
+   Duplica os itens do marquee de logos para criar o efeito de loop contínuo.
+   A operação é idempotente via flag `data-cloned`.
    */
   function initMarquee() {
     const track = document.querySelector(".logo-marquee__track");
@@ -415,10 +415,10 @@
   // ============================================================
 
   /**
-   * Encapsula todo o estado e comportamento do formulário de contato.
-   * Retorna `null` se o formulário não existir no documento.
-   *
-   * @returns {null}
+   Encapsula todo o estado e comportamento do formulário de contato.
+   Retorna `null` se o formulário não existir no documento.
+  
+   @returns {null}
    */
   function initContactForm() {
     const form         = /** @type {HTMLFormElement|null} */ (document.getElementById("contact-form"));
@@ -427,25 +427,25 @@
     if (!form) return null;
 
     // ----------------------------------------------------------
-    // 6.1 Helpers de acesso ao DOM — escopados ao formulário
+    // Helpers de acesso ao DOM — escopados ao formulário
     // ----------------------------------------------------------
 
     /**
-     * Retorna o campo do formulário pelo nome lógico.
-     * @param {keyof typeof FORM_FIELD_SELECTORS} name
-     * @returns {HTMLElement|null}
+     Retorna o campo do formulário pelo nome lógico.
+     @param {keyof typeof FORM_FIELD_SELECTORS} name
+     @returns {HTMLElement|null}
      */
     const getField = (name) => form.querySelector(FORM_FIELD_SELECTORS[name]);
 
     /**
-     * Retorna o elemento de erro associado a um campo pelo seu `id`.
-     * @param {string} fieldId
-     * @returns {HTMLElement|null}
+     Retorna o elemento de erro associado a um campo pelo seu `id`.
+     @param {string} fieldId
+     @returns {HTMLElement|null}
      */
     const getErrorEl = (fieldId) => form.querySelector(`[data-error-for="${fieldId}"]`);
 
     // ----------------------------------------------------------
-    // 6.2 Estado local do formulário
+    // Estado local do formulário
     // ----------------------------------------------------------
 
     /** @type {Set<string>} Conjunto de IDs de campos que o usuário já interagiu. */
@@ -458,13 +458,13 @@
     let zipAbortController = /** @type {AbortController|null} */ (null);
 
     // ----------------------------------------------------------
-    // 6.3 Feedback global do formulário
+    // Feedback global do formulário
     // ----------------------------------------------------------
 
     /**
-     * Exibe uma mensagem de feedback global no formulário.
-     * @param {string} message
-     * @param {"success"|"error"|"info"} type
+     Exibe uma mensagem de feedback global no formulário.
+     @param {string} message
+     @param {"success"|"error"|"info"} type
      */
     const showFeedback = (message, type) => {
       if (!formFeedback) return;
@@ -480,15 +480,15 @@
     };
 
     // ----------------------------------------------------------
-    // 6.4 Gerenciamento de estado visual dos campos
+    // Gerenciamento de estado visual dos campos
     // ----------------------------------------------------------
 
     /**
-     * Aplica visualmente o estado de válido/inválido a um campo.
-     * O estado só é exibido se o campo já foi tocado pelo usuário.
-     *
-     * @param {HTMLElement} field
-     * @param {string} [errorMessage] - Vazio indica campo válido.
+     Aplica visualmente o estado de válido/inválido a um campo.
+     O estado só é exibido se o campo já foi tocado pelo usuário.
+    
+     @param {HTMLElement} field
+     @param {string} [errorMessage] - Vazio indica campo válido.
      */
     const applyFieldState = (field, errorMessage = "") => {
       if (!field) return;
@@ -508,13 +508,13 @@
     };
 
     // ----------------------------------------------------------
-    // 6.5 Validadores por campo
+    // Validadores por campo
     // ----------------------------------------------------------
 
     /**
-     * Mapa de validadores. Cada função recebe o campo e retorna
-     * `true` se válido, ou uma string com a mensagem de erro.
-     * @type {Record<string, (field: HTMLInputElement) => true | string>}
+     Mapa de validadores. Cada função recebe o campo e retorna
+     `true` se válido, ou uma string com a mensagem de erro.
+     @type {Record<string, (field: HTMLInputElement) => true | string>}
      */
     const validators = {
       name:     (f) => f.value.trim().length >= 3    || "Informe um nome com pelo menos 3 caracteres.",
@@ -530,11 +530,11 @@
     };
 
     /**
-     * Valida um campo individual e atualiza seu estado visual.
-     *
-     * @param {string} fieldName - Chave em `validators`
-     * @param {{ markTouched?: boolean }} [options]
-     * @returns {boolean} `true` se o campo for válido.
+     Valida um campo individual e atualiza seu estado visual.
+    
+     @param {string} fieldName - Chave em `validators`
+     @param {{ markTouched?: boolean }} [options]
+     @returns {boolean} `true` se o campo for válido.
      */
     const validateField = (fieldName, { markTouched = true } = {}) => {
       const field     = /** @type {HTMLInputElement} */ (getField(fieldName));
@@ -551,10 +551,10 @@
     };
 
     /**
-     * Valida todos os campos do formulário de uma vez.
-     * Marca todos como "tocados" para exibir os erros.
-     *
-     * @returns {FormValidationSummary}
+     Valida todos os campos do formulário de uma vez.
+     Marca todos como "tocados" para exibir os erros.
+    
+     @returns {FormValidationSummary}
      */
     const validateAllFields = () => {
       const fieldNames = Object.keys(validators);
@@ -575,12 +575,12 @@
     };
 
     // ----------------------------------------------------------
-    // 6.6 População dinâmica de estado e cidade
+    // População dinâmica de estado e cidade
     // ----------------------------------------------------------
 
     /**
-     * Renderiza as opções do `<select>` de estados.
-     * @param {string} [selectedUf]
+     Renderiza as opções do `<select>` de estados.
+     @param {string} [selectedUf]
      */
     const populateStates = (selectedUf) => {
       const stateField = /** @type {HTMLSelectElement|null} */ (getField("state"));
@@ -598,11 +598,11 @@
     };
 
     /**
-     * Renderiza as opções do `<select>` de cidades para um estado.
-     * Se `selectedCity` não existir na lista, ela é inserida no topo.
-     *
-     * @param {string} uf
-     * @param {string} [selectedCity]
+     Renderiza as opções do `<select>` de cidades para um estado.
+     Se `selectedCity` não existir na lista, ela é inserida no topo.
+     
+     @param {string} uf
+     @param {string} [selectedCity]
      */
     const populateCities = (uf, selectedCity = "") => {
       const cityField = /** @type {HTMLSelectElement|null} */ (getField("city"));
@@ -627,15 +627,15 @@
     };
 
     // ----------------------------------------------------------
-    // 6.7 Busca de CEP (ViaCEP)
+    // Busca de CEP (ViaCEP)
     // ----------------------------------------------------------
 
     /**
-     * Ativa ou desativa o indicador de carregamento do campo de CEP.
-     * Também desabilita o botão de submit durante a consulta para
-     * evitar envios com dados incompletos.
-     *
-     * @param {boolean} isLoading
+     Ativa ou desativa o indicador de carregamento do campo de CEP.
+     Também desabilita o botão de submit durante a consulta para
+     evitar envios com dados incompletos.
+    
+     @param {boolean} isLoading
      */
     const setZipLoading = (isLoading) => {
       const zipField    = getField("zip");
@@ -649,10 +649,10 @@
     };
 
     /**
-     * Preenche os campos de endereço com os dados retornados pelo ViaCEP
-     * e aciona a revalidação de todos os campos afetados.
-     *
-     * @param {ViaCepResponse} data
+     Preenche os campos de endereço com os dados retornados pelo ViaCEP
+     e aciona a revalidação de todos os campos afetados.
+    
+     @param {ViaCepResponse} data
      */
     const fillAddressFromZip = (data) => {
       const zipField      = /** @type {HTMLInputElement|null} */ (getField("zip"));
@@ -677,12 +677,12 @@
     };
 
     /**
-     * Consulta a API ViaCEP para um CEP de 8 dígitos.
-     * Utiliza `AbortController` para cancelar requisições em voo
-     * quando uma nova consulta é iniciada antes da anterior terminar.
-     *
-     * @param {string} zipDigits - 8 dígitos sem formatação
-     * @returns {Promise<ZipLookupResult>}
+     Consulta a API ViaCEP para um CEP de 8 dígitos.
+     Utiliza `AbortController` para cancelar requisições em voo
+     quando uma nova consulta é iniciada antes da anterior terminar.
+    
+     @param {string} zipDigits - 8 dígitos sem formatação
+     @returns {Promise<ZipLookupResult>}
      */
     const queryViaCep = async (zipDigits) => {
       if (zipAbortController) {
@@ -718,11 +718,10 @@
     };
 
     /**
-     * Orquestra a busca de CEP: checa o cache local, usa fallback offline
-     * se disponível, ou chama a API ViaCEP.
-     *
-     * @param {{ force?: boolean }} [options]
-     *   `force: true` ignora a checagem de CEP já consultado.
+     Orquestra a busca de CEP: checa o cache local, usa fallback offline
+     se disponível, ou chama a API ViaCEP.
+    
+     @param {{ force?: boolean }} [options]
      */
     const fetchZip = async ({ force = false } = {}) => {
       const zipField  = /** @type {HTMLInputElement|null} */ (getField("zip"));
@@ -766,9 +765,9 @@
     const debouncedFetchZip = debounce(() => fetchZip(), ZIP_DEBOUNCE_DELAY_MS);
 
     /**
-     * Reagenda ou executa imediatamente a busca de CEP conforme o estado
-     * atual do campo. Limpa `lastZipQueried` se o CEP ficar incompleto
-     * para garantir que a próxima digitação completa dispare a consulta.
+     Reagenda ou executa imediatamente a busca de CEP conforme o estado
+     atual do campo. Limpa `lastZipQueried` se o CEP ficar incompleto
+     para garantir que a próxima digitação completa dispare a consulta.
      */
     const scheduledFetchZip = () => {
       const zipField  = /** @type {HTMLInputElement|null} */ (getField("zip"));
@@ -794,15 +793,15 @@
     };
 
     // ----------------------------------------------------------
-    // 6.8 Binding de eventos — validação em tempo real
+    // Binding de eventos — validação em tempo real
     // ----------------------------------------------------------
 
     /**
-     * Adiciona listeners de `blur` e `input` a um campo para validação
-     * reativa: valida ao sair do campo e revalida a cada digitação
-     * após o campo ter sido tocado ao menos uma vez.
-     *
-     * @param {string} fieldName
+     Adiciona listeners de `blur` e `input` a um campo para validação
+     reativa: valida ao sair do campo e revalida a cada digitação
+     após o campo ter sido tocado ao menos uma vez.
+    
+     @param {string} fieldName
      */
     const bindRealtimeValidation = (fieldName) => {
       const field = getField(fieldName);
@@ -819,17 +818,17 @@
     };
 
     // ----------------------------------------------------------
-    // 6.9 Reset completo do formulário
+    // Reset completo do formulário
     // ----------------------------------------------------------
 
     /**
-     * Reinicia o formulário para o estado inicial:
-     * - Limpa o estado nativo do formulário
-     * - Limpa os campos de estilo de validação
-     * - Reseta o Set de campos tocados
-     * - Reseta o cache de CEP consultado
-     * - Restaura os selects de estado e cidade para os valores padrão
-     * - Limpa o feedback global
+     Reinicia o formulário para o estado inicial:
+     - Limpa o estado nativo do formulário
+     - Limpa os campos de estilo de validação
+     - Reseta o Set de campos tocados
+     - Reseta o cache de CEP consultado
+     - Restaura os selects de estado e cidade para os valores padrão
+     - Limpa o feedback global
      */
     const resetForm = () => {
       form.reset();
@@ -852,14 +851,14 @@
     };
 
     // ----------------------------------------------------------
-    // 6.10 Envio do formulário
+    // Envio do formulário
     // ----------------------------------------------------------
 
     /**
-     * Serializa os campos visíveis do formulário em um objeto
-     * pronto para ser enviado a uma API.
-     *
-     * @returns {Record<string, string>}
+     Serializa os campos visíveis do formulário em um objeto
+     pronto para ser enviado a uma API.
+    
+     @returns {Record<string, string>}
      */
     const serializeForm = () => {
       const data = {};
@@ -876,12 +875,12 @@
     };
 
     /**
-     * Envia os dados do formulário para o endpoint configurado.
-     * Substitua o bloco interno pelo método de envio adequado
-     * (fetch para uma API REST, integração com serviço de e-mail, etc.).
-     *
-     * @param {Record<string, string>} _payload
-     * @returns {Promise<void>}
+     Envia os dados do formulário para o endpoint configurado.
+     Substitua o bloco interno pelo método de envio adequado
+     (fetch para uma API REST, integração com serviço de e-mail, etc.).
+     
+     @param {Record<string, string>} _payload
+     @returns {Promise<void>}
      */
     const submitFormData = async (_payload) => {
       // TODO: substituir pelo endpoint real de envio.
@@ -902,7 +901,7 @@
     };
 
     // ----------------------------------------------------------
-    // 6.11 Inicialização interna do formulário
+    // Inicialização interna do formulário
     // ----------------------------------------------------------
 
     const defaultCity = STATE_DATA.find((s) => s.uf === DEFAULT_UF)?.cities[0] ?? "";
@@ -984,8 +983,8 @@
   // ============================================================
 
   /**
-   * Ponto de entrada: inicializa todos os módulos na ordem correta.
-   * Cada módulo é independente e tolera a ausência de seus elementos no DOM.
+  Ponto de entrada: inicializa todos os módulos na ordem correta.
+  Cada módulo é independente e tolera a ausência de seus elementos no DOM.
    */
   function init() {
     initHeaderScroll();

@@ -1,14 +1,14 @@
 /**
- * login.js — Módulo do formulário de autenticação
- *
- * Responsabilidades:
- *  1. Alternar visibilidade da senha
- *  2. Validação reativa por campo (blur + input)
- *  3. Validação completa no submit
- *  4. Simulação de envio com feedback ao usuário
- *  5. Reset de estado após sucesso
- *
- * Não polui o escopo global: todo o estado vive dentro da IIFE.
+ login.js — Módulo do formulário de autenticação
+
+ Responsabilidades:
+  1. Alternar visibilidade da senha
+  2. Validação reativa por campo (blur + input)
+  3. Validação completa no submit
+  4. Simulação de envio com feedback ao usuário
+  5. Reset de estado após sucesso
+
+ Não polui o escopo global: todo o estado vive dentro da IIFE.
  */
 
 (() => {
@@ -19,17 +19,17 @@
   // ============================================================
 
   /**
-   * @typedef {"success" | "error" | "info"} FeedbackType
+   @typedef {"success" | "error" | "info"} FeedbackType
    */
 
   /**
-   * @typedef {Object} LoginElements
-   * @property {HTMLFormElement}    form
-   * @property {HTMLElement}        feedback
-   * @property {HTMLInputElement}   emailField
-   * @property {HTMLInputElement}   passwordField
-   * @property {HTMLButtonElement}  passwordToggle
-   * @property {HTMLButtonElement}  submitButton
+   @typedef {Object} LoginElements
+   @property {HTMLFormElement}    form
+   @property {HTMLElement}        feedback
+   @property {HTMLInputElement}   emailField
+   @property {HTMLInputElement}   passwordField
+   @property {HTMLButtonElement}  passwordToggle
+   @property {HTMLButtonElement}  submitButton
    */
 
   // ============================================================
@@ -44,8 +44,6 @@
 
   // ============================================================
   // RESOLUÇÃO DE ELEMENTOS
-  // Agrupados aqui para que qualquer ausência seja detectada
-  // imediatamente, sem erros silenciosos em runtime.
   // ============================================================
 
   /** @type {LoginElements} */
@@ -65,9 +63,9 @@
   // ============================================================
 
   /**
-   * IDs dos campos com que o usuário já interagiu ao menos uma vez.
-   * Controla quando os erros de validação devem aparecer visualmente.
-   * @type {Set<string>}
+   IDs dos campos com que o usuário já interagiu ao menos uma vez.
+   Controla quando os erros de validação devem aparecer visualmente.
+   @type {Set<string>}
    */
   const touchedFields = new Set();
 
@@ -93,9 +91,9 @@
   // ============================================================
 
   /**
-   * Exibe uma mensagem de feedback abaixo do formulário.
-   * @param {string}       message
-   * @param {FeedbackType} type
+   Exibe uma mensagem de feedback abaixo do formulário.
+   @param {string}       message
+   @param {FeedbackType} type
    */
   const showFeedback = (message, type) => {
     EL.feedback.textContent = message;
@@ -113,11 +111,11 @@
   // ============================================================
 
   /**
-   * Aplica ou remove as classes de estado (válido/inválido) em um campo,
-   * exibindo a mensagem de erro associada apenas após o primeiro toque.
-   *
-   * @param {HTMLInputElement} field
-   * @param {string}           [errorMessage] — vazio indica campo válido
+    Aplica ou remove as classes de estado (válido/inválido) em um campo,
+    exibindo a mensagem de erro associada apenas após o primeiro toque.
+   
+    @param {HTMLInputElement} field
+    @param {string}           [errorMessage] — vazio indica campo válido
    */
   const applyFieldState = (field, errorMessage = "") => {
     const errorEl   = form.querySelector(`[data-error-for="${field.id}"]`);
@@ -139,12 +137,12 @@
   // ============================================================
 
   /**
-   * Valida um campo pelo seu `id`, atualiza o estado visual
-   * e opcionalmente marca o campo como "tocado".
-   *
-   * @param {HTMLInputElement} field
-   * @param {{ markTouched?: boolean }} [options]
-   * @returns {boolean} `true` se o campo for válido.
+    Valida um campo pelo seu `id`, atualiza o estado visual
+    e opcionalmente marca o campo como "tocado".
+   
+    @param {HTMLInputElement} field
+    @param {{ markTouched?: boolean }} [options]
+    @returns {boolean} `true` se o campo for válido.
    */
   const validateField = (field, { markTouched = true } = {}) => {
     if (markTouched) touchedFields.add(field.id);
@@ -158,10 +156,10 @@
   };
 
   /**
-   * Valida todos os campos do formulário, marcando-os como tocados
-   * para que os erros sejam exibidos mesmo sem interação prévia.
-   *
-   * @returns {{ isValid: boolean, firstInvalidField: HTMLInputElement | null }}
+    Valida todos os campos do formulário, marcando-os como tocados
+    para que os erros sejam exibidos mesmo sem interação prévia.
+   
+    @returns {{ isValid: boolean, firstInvalidField: HTMLInputElement | null }}
    */
   const validateAllFields = () => {
     const fieldIds = Object.keys(validators);
@@ -187,11 +185,11 @@
   // ============================================================
 
   /**
-   * Simula o envio das credenciais para o servidor.
-   * Em produção, substitua pela chamada real (ex.: fetch para /api/auth).
-   *
-   * @param {{ email: string, password: string, remember: boolean }} _credentials
-   * @returns {Promise<void>}
+    Simula o envio das credenciais para o servidor.
+    Em produção, substitua pela chamada real (ex.: fetch para /api/auth).
+   
+    @param {{ email: string, password: string, remember: boolean }} _credentials
+    @returns {Promise<void>}
    */
   const authenticateUser = async (_credentials) => {
     // TODO: substituir pela integração real. Exemplo:
@@ -214,8 +212,8 @@
   // ============================================================
 
   /**
-   * Reinicia o formulário para o estado inicial limpo:
-   * valores, estado de validação visual e campos tocados.
+   Reinicia o formulário para o estado inicial limpo:
+   valores, estado de validação visual e campos tocados.
    */
   const resetForm = () => {
     form.reset();
