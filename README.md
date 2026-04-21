@@ -1,41 +1,77 @@
-# Landing Page - Teste Técnico
+# Easy Doc — Landing Page
 
-Landing page estática em `HTML`, `CSS` e `JavaScript`, reproduzida a partir do layout do Figma e refinada para uma entrega responsiva, acessível e com acabamento visual profissional.
+Landing page desenvolvida como teste técnico, reproduzida a partir de layout no Figma e entregue com fidelidade visual, responsividade completa e código organizado em módulos independentes.
 
 ## Como executar
 
-Abra o arquivo `index.html` no navegador.
+Não há dependências ou build steps. Basta abrir o arquivo diretamente no navegador:
 
-Também é possível abrir diretamente:
+```
+index.html        → landing page principal
+login.html        → página de login
+support.html      → página de suporte
+```
 
-- `login.html`
-- `suporte.html`
+> Recomendado: abrir via servidor local (ex.: Live Server no VS Code) para que a busca de CEP via ViaCEP funcione corretamente em todos os navegadores.
 
-## Estrutura principal
+## Estrutura do projeto
 
-- `index.html`: landing page principal.
-- `login.html`: página simulada de login.
-- `suporte.html`: página de suporte com FAQ.
-- `assets/css/style.css`: estilos globais, layout responsivo e páginas internas.
-- `assets/js/main.js`: navegação, vídeos, carrossel, animações e formulário principal.
-- `assets/js/login.js`: validação e interação da página de login.
-- `assets/js/support.js`: comportamento do FAQ.
-- `assets/images/`: imagens e elementos exportados do Figma.
+```
+/
+├── index.html
+├── login.html
+├── support.html
+└── assets/
+    ├── css/
+    │   └── style.css         # estilos globais, responsivo e páginas internas
+    ├── js/
+    │   ├── main.js           # navegação, animações, vídeos, carrossel e formulário
+    │   ├── login.js          # validação e interação da página de login
+    │   └── support.js        # accordion do FAQ
+    └── images/               # assets exportados do Figma
+```
 
-## Funcionalidades
+## Funcionalidades implementadas
 
-- Navegação por âncoras com menu responsivo.
-- Vídeo inicial e vídeo final incorporados do YouTube.
-- Carrossel automático de marcas.
-- Animações leves com `IntersectionObserver`.
-- Formulário com validação sem envio real.
-- Máscara de telefone e CEP.
-- Busca automática de endereço via ViaCEP.
-- Seleção dinâmica de cidades por estado.
-- Página de Login com validação, feedback e alternância de senha.
-- Página de Suporte com cards, canais fictícios, FAQ em accordion e CTA.
+**Landing page**
+- Menu responsivo com hambúrguer, fechamento por Esc e compensação de header fixo na navegação por âncoras
+- Link de navegação ativo por seção via `IntersectionObserver`
+- Animações de entrada (`data-reveal`) com `IntersectionObserver` e fallback para navegadores sem suporte
+- Dois vídeos do YouTube incorporados com click-to-play e autoplay no iframe
+- Carrossel automático de marcas (CSS keyframe + duplicação via JS, idempotente)
 
-## Observação
+**Formulário de contato**
+- Validação reativa campo a campo (dispara no `blur`, revalida no `input` após primeiro toque)
+- Máscara de telefone com suporte a 8 e 9 dígitos: `(DD) NNNN-NNNN` e `(DD) NNNNN-NNNN`
+- Máscara de CEP com busca automática via [ViaCEP](https://viacep.com.br), incluindo:
+  - Debounce de 450ms para evitar requisições a cada tecla
+  - `AbortController` para cancelar requisições em voo
+  - Fallback offline com CEPs pré-cadastrados
+  - Loader visual durante a consulta e bloqueio do submit
+- Seleção dinâmica de cidades por estado (27 estados cobertos)
+- Foco automático no primeiro campo inválido ao tentar submeter
+
+**Página de login**
+- Validação reativa de e-mail e senha
+- Alternância de visibilidade da senha com atualização de `aria-label`
+- Feedback visual de sucesso/erro após simulação de envio
+- Reset completo do formulário após autenticação bem-sucedida
+
+**Página de suporte**
+- FAQ em accordion exclusivo: apenas um item aberto por vez
+- Implementado com `<details>` nativo, acessível por teclado sem tratamento extra
+
+## Decisões técnicas
+
+Todos os scripts são encapsulados em IIFEs com `"use strict"`, sem dependências externas e sem poluição do escopo global. A configuração central (`STATE_DATA`, seletores, delays) fica no topo de cada módulo para facilitar ajustes pontuais.
+
+A integração com o backend está preparada para substituição: os pontos de envio em `main.js` e `login.js` contêm comentários com exemplos de `fetch` prontos para uso.
 
 O captcha da Cloudflare foi mantido apenas como elemento visual, conforme permitido no briefing.
-# Easy-Doc-AugustoSantana
+
+## Acessibilidade
+
+- `aria-expanded`, `aria-label` e `aria-hidden` nos elementos interativos
+- `role="status"` com `aria-live="polite"` nos feedbacks de formulário
+- `focus-visible` com outline customizado em todos os elementos focáveis
+- SVG sprite inline com símbolos `aria-hidden` para não poluir a árvore de acessibilidade
