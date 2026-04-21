@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Central de suporte Easy Doc: atendimento técnico, implantação, relacionamento e perguntas frequentes sobre a plataforma de comprovantes digitais." />
-    <meta name="robots" content="noindex, nofollow" />
+    <meta name="description" content="Central de suporte Easy Doc: atendimento técnico, implantação, relacionamento e perguntas frequentes sobre gestão de comprovantes digitais." />
 
     <title>Suporte | Easy Doc</title>
 
@@ -14,7 +13,10 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+    <link rel="alternate icon" type="image/png" href="assets/images/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
+    <link rel="stylesheet" href="assets/css/style.css?v=landing-polish-7" />
   </head>
 
   <!--
@@ -56,9 +58,15 @@
         </nav>
 
         <div class="site-actions">
-          <a class="top-cta" href="index.html#contato">Solicitar demonstração</a>
-          <a href="login.html" class="action-link">Login</a>
-          <a href="suporte.html" class="action-link" aria-current="page">Suporte</a>
+          <a class="top-cta" href="index.html#contato">Falar com especialista</a>
+          <a href="login.html" class="action-link">
+            <img class="action-link__icon" src="assets/images/icon-login.png" alt="" aria-hidden="true" />
+            <span>Login</span>
+          </a>
+          <a href="suporte.html" class="action-link" aria-current="page">
+            <img class="action-link__icon" src="assets/images/icon-support.png" alt="" aria-hidden="true" />
+            <span>Suporte</span>
+          </a>
         </div>
       </div>
     </header>
@@ -73,12 +81,12 @@
       ====================================================== -->
       <section class="support-hero" aria-labelledby="support-heading">
 
-        <div class="support-hero__content">
+        <div class="support-hero__content" data-reveal>
           <span class="system-kicker">Central de ajuda</span>
           <h1 id="support-heading">Suporte para manter a operação documental fluindo.</h1>
           <p>
-            Encontre caminhos rápidos para dúvidas técnicas, implantação,
-            relacionamento e acompanhamento do uso da Easy Doc em transportadoras.
+            Conte com uma equipe preparada para apoiar sua operação em acesso,
+            captura de comprovantes, qualidade de imagem, integrações e implantação.
           </p>
 
           <div class="support-hero__actions">
@@ -89,7 +97,7 @@
                 <path d="m13 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </a>
-            <a class="system-back" href="index.html">Voltar para a landing</a>
+            <a class="system-back" href="index.html">Voltar para o site</a>
           </div>
         </div>
 
@@ -97,9 +105,9 @@
           aside: informação complementar ao hero — não é parte da narrativa
           principal da seção, mas contextualiza o SLA do atendimento.
         -->
-        <aside class="support-sla-card" aria-label="Tempo médio de atendimento">
+        <aside class="support-sla-card" aria-label="Tempo médio de atendimento" data-reveal>
           <img src="assets/images/robot.png" alt="" aria-hidden="true" />
-          <span>Tempo médio simulado</span>
+          <span>Tempo médio de resposta</span>
           <strong>2h úteis</strong>
           <p>Triagem rápida para dúvidas sobre captura, qualidade de imagem e gestão documental.</p>
           <div aria-label="Características do atendimento">
@@ -137,7 +145,7 @@
               </svg>
             </div>
             <h3>Atendimento técnico</h3>
-            <p>Suporte para captura, qualidade de imagem, equipamentos, acesso e funcionamento da plataforma.</p>
+            <p>Correção de acesso, captura, upload, qualidade de imagem, equipamentos e funcionamento da plataforma.</p>
           </article>
 
           <article class="support-card support-card--dark" role="listitem">
@@ -148,7 +156,7 @@
               </svg>
             </div>
             <h3>Implantação</h3>
-            <p>Apoio para configuração inicial, treinamento de equipes e organização dos fluxos por filial.</p>
+            <p>Acompanhamento para configuração inicial, treinamento de equipes, regras por cliente e fluxos por filial.</p>
           </article>
 
           <article class="support-card" role="listitem">
@@ -164,7 +172,7 @@
               </svg>
             </div>
             <h3>Relacionamento</h3>
-            <p>Canal para expansão de uso, novas integrações, acompanhamento comercial e melhoria contínua.</p>
+            <p>Canal para expansão de uso, novas integrações, acompanhamento de indicadores e melhoria contínua.</p>
           </article>
 
         </div><!-- /.support-card-grid -->
@@ -207,7 +215,7 @@
           </div>
 
           <a class="contact-method__cta" href="index.html#contato">
-            Enviar dados pelo formulário
+            Abrir chamado pelo formulário
           </a>
         </aside>
 
@@ -216,7 +224,7 @@
           <div class="faq-panel__header">
             <span class="system-kicker">FAQ</span>
             <h2 id="faq-heading">Perguntas frequentes</h2>
-            <p>Respostas rápidas sobre o fluxo demonstrativo e a plataforma Easy Doc.</p>
+            <p>Respostas rápidas para manter a gestão de comprovantes digitais estável, rastreável e produtiva.</p>
           </div>
 
           <!--
@@ -228,34 +236,56 @@
           <div class="faq-list" role="list">
 
             <details class="faq-item" open role="listitem">
-              <summary>O suporte desta página é funcional?</summary>
+              <summary>Como abrir um chamado de suporte?</summary>
               <p>
-                Não há integração real com atendimento. A página demonstra estrutura,
-                hierarquia visual e jornada de suporte para fins de validação do produto.
+                Use o formulário de contato informando empresa, telefone, cidade e uma
+                descrição objetiva do ocorrido. Para acelerar a triagem, inclua o módulo
+                afetado, usuário impactado e horário aproximado do erro.
               </p>
             </details>
 
             <details class="faq-item" role="listitem">
-              <summary>Como acompanho uma implantação?</summary>
+              <summary>Quais informações devo enviar para problemas de captura?</summary>
               <p>
-                O fluxo sugerido passa por diagnóstico, desenho da solução, implantação,
-                treinamento operacional e suporte contínuo.
+                Informe o modelo do equipamento, tipo de comprovante, filial, cliente,
+                exemplos de imagens rejeitadas e se o problema ocorre em todos os
+                documentos ou apenas em uma operação específica.
               </p>
             </details>
 
             <details class="faq-item" role="listitem">
-              <summary>Posso pedir uma demonstração?</summary>
+              <summary>Como acompanhar comprovantes pendentes ou rejeitados?</summary>
               <p>
-                Sim. Use o CTA desta página ou volte ao formulário principal da landing
-                para validar a jornada completa de contato.
+                Acompanhe a fila de pendências pelo portal, filtrando por cliente,
+                período, filial e status. Itens rejeitados devem ser revisados pela
+                equipe operacional antes de nova validação ou reenvio ao cliente.
               </p>
             </details>
 
             <details class="faq-item" role="listitem">
-              <summary>Login e suporte precisam funcionar no teste?</summary>
+              <summary>Como funciona o suporte durante a implantação?</summary>
               <p>
-                O briefing não exige funcionamento real, mas as páginas simulam produto,
-                navegação e consistência visual de forma fiel ao produto final.
+                A implantação passa por diagnóstico, configuração da operação, definição
+                de usuários, parametrização de clientes, treinamento da equipe e
+                acompanhamento dos primeiros ciclos de uso.
+              </p>
+            </details>
+
+            <details class="faq-item" role="listitem">
+              <summary>A Easy Doc pode integrar com TMS, ERP ou sistemas internos?</summary>
+              <p>
+                Sim. A equipe avalia o fluxo atual, os eventos necessários, o formato dos
+                dados e os pontos de integração para conectar comprovantes, status e
+                documentos digitais aos sistemas já utilizados pela transportadora.
+              </p>
+            </details>
+
+            <details class="faq-item" role="listitem">
+              <summary>Qual é a prioridade para chamados críticos?</summary>
+              <p>
+                Chamados que afetam faturamento, liberação de pagamentos ou grande volume
+                de entregas recebem prioridade de triagem. Quanto mais contexto o chamado
+                trouxer, mais rápida tende a ser a identificação da causa.
               </p>
             </details>
 
@@ -270,14 +300,14 @@
       ====================================================== -->
       <section class="support-final" aria-labelledby="support-final-heading" data-reveal>
         <span class="system-kicker">Próximo passo</span>
-        <h2 id="support-final-heading">Quer simular um contato comercial completo?</h2>
+        <h2 id="support-final-heading">Precisa de apoio para estruturar sua operação documental?</h2>
         <p>
-          Volte para a landing e preencha o formulário com validação,
-          CEP automático e cidades dinâmicas.
+          Fale com a equipe Easy Doc para entender o melhor caminho de atendimento,
+          implantação ou expansão da plataforma na sua transportadora.
         </p>
         <div>
           <a class="cta-button" href="index.html#contato">
-            <span>Preencher formulário</span>
+            <span>Falar com especialista</span>
             <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="20" height="20">
               <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
               <path d="m13 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />

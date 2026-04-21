@@ -11,12 +11,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=Readex+Pro:wght@500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+    <link rel="alternate icon" type="image/png" href="assets/images/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
+    <link rel="stylesheet" href="assets/css/style.css?v=landing-polish-8" />
   </head>
-  <body>
+  <body class="landing-page">
     <svg class="icon-sprite" aria-hidden="true" focusable="false">
       <symbol id="icon-arrow" viewBox="0 0 24 24">
         <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -128,8 +131,14 @@
 
         <div class="site-actions">
           <a class="top-cta" href="#contato">Solicitar demonstração</a>
-          <a href="login.html" class="action-link">Login</a>
-          <a href="suporte.html" class="action-link">Suporte</a>
+          <a href="login.html" class="action-link">
+            <img class="action-link__icon" src="assets/images/icon-login.png" alt="" aria-hidden="true" />
+            <span>Login</span>
+          </a>
+          <a href="suporte.html" class="action-link">
+            <img class="action-link__icon" src="assets/images/icon-support.png" alt="" aria-hidden="true" />
+            <span>Suporte</span>
+          </a>
         </div>
       </div>
     </header>
@@ -141,7 +150,10 @@
 
         <div class="hero__container">
           <div class="hero__content" data-reveal>
-            <h1>Adeus, canhotos problemáticos: elimine perdas e conquiste eficiência com a Easy Doc</h1>
+            <h1>
+              <span class="hero-title-line">Adeus, canhotos problemáticos: elimine</span>
+              <span class="hero-title-line">perdas e conquiste eficiência com a Easy Doc</span>
+            </h1>
             <p>
               Saiba como a digitalização de comprovantes de entrega pode
               <strong>transformar a operação da sua transportadora, acelerando pagamentos, reduzindo custos</strong>
@@ -179,8 +191,8 @@
 
           <div class="problem-grid" data-reveal>
             <article class="problem-card">
-              <span class="icon-badge">
-                <svg aria-hidden="true"><use href="#icon-alert"></use></svg>
+              <span class="icon-badge icon-badge--asset">
+                <img src="assets/images/problem-icon-secondary.png" alt="" aria-hidden="true" />
               </span>
               <p>
                 <strong>Dificuldade na obtenção de comprovantes</strong> de entrega digitais
@@ -189,8 +201,8 @@
             </article>
 
             <article class="problem-card">
-              <span class="icon-badge">
-                <svg aria-hidden="true"><use href="#icon-alert"></use></svg>
+              <span class="icon-badge icon-badge--asset">
+                <img src="assets/images/problem-icon-primary.png" alt="" aria-hidden="true" />
               </span>
               <p>
                 <strong>Integração adequada</strong> a um sistema, para poder disponibilizar
@@ -205,8 +217,8 @@
 
           <div class="issue-list" data-reveal>
             <article class="issue-card">
-              <span class="icon-badge icon-badge--small">
-                <svg aria-hidden="true"><use href="#icon-layers"></use></svg>
+              <span class="icon-badge icon-badge--small icon-badge--image">
+                <img src="assets/images/issue-icon-payment.png" alt="" aria-hidden="true" />
               </span>
               <div>
                 <h3>Bloqueio e recusa de pagamentos</h3>
@@ -215,8 +227,8 @@
             </article>
 
             <article class="issue-card">
-              <span class="icon-badge icon-badge--small">
-                <svg aria-hidden="true"><use href="#icon-clock"></use></svg>
+              <span class="icon-badge icon-badge--small icon-badge--image">
+                <img src="assets/images/issue-icon-time.png" alt="" aria-hidden="true" />
               </span>
               <div>
                 <h3>Perda de tempo e recursos</h3>
@@ -225,8 +237,8 @@
             </article>
 
             <article class="issue-card">
-              <span class="icon-badge icon-badge--small">
-                <svg aria-hidden="true"><use href="#icon-thumbs"></use></svg>
+              <span class="icon-badge icon-badge--small icon-badge--image">
+                <img src="assets/images/issue-icon-image.png" alt="" aria-hidden="true" />
               </span>
               <div>
                 <h3>Impacto negativo na imagem</h3>
@@ -254,7 +266,7 @@
 
       <section class="cause-section" id="produtos">
         <div class="cause-section__media" data-reveal>
-          <img src="assets/images/products-red.png" alt="Scanners e adaptadores utilizados pela Easy Doc" />
+          <img src="assets/images/products-red.png?v=enhanced-3" alt="Scanners e adaptadores utilizados pela Easy Doc" />
         </div>
 
         <div class="cause-section__content" data-reveal>
@@ -358,21 +370,21 @@
           <div class="impact-grid" data-reveal>
             <article class="impact-card">
               <span class="impact-card__icon">
-                <svg aria-hidden="true"><use href="#icon-doc"></use></svg>
+                <img src="assets/images/icon-card-document.png" alt="" aria-hidden="true" />
               </span>
               <p>Recebimento das faturas<br />sem atrasos ou recusas</p>
             </article>
 
             <article class="impact-card">
               <span class="impact-card__icon">
-                <svg aria-hidden="true"><use href="#icon-chart"></use></svg>
+                <img src="assets/images/icon-card-chart.png" alt="" aria-hidden="true" />
               </span>
               <p>Redução de custos e aumento<br />da produtividade da equipe</p>
             </article>
 
             <article class="impact-card">
               <span class="impact-card__icon">
-                <svg aria-hidden="true"><use href="#icon-thumbs"></use></svg>
+                <img src="assets/images/icon-card-thumbs.png" alt="" aria-hidden="true" />
               </span>
               <p>Fortalecimento da imagem<br />da empresa</p>
             </article>
@@ -515,33 +527,34 @@
 
           <div class="logo-marquee" aria-label="Marcas atendidas" data-reveal>
             <div class="logo-marquee__track">
-              <span>GOODYEAR</span>
-              <span>DANONE</span>
-              <span>ARNO</span>
-              <span>aché</span>
+              <img src="assets/images/logo-goodyear.png" alt="Goodyear" />
+              <img src="assets/images/logo-danone.png" alt="Danone" />
+              <img src="assets/images/logo-arno.png" alt="Arno" />
+              <img src="assets/images/logo-ache.png" alt="Aché" />
               <img src="assets/images/logo-solistica.png" alt="Solistica" />
               <img src="assets/images/logo-ceratti.png" alt="Ceratti" />
-              <span>Yoki</span>
-              <span>LUFT Logistics</span>
-              <span>GOODYEAR</span>
-              <span>DANONE</span>
-              <span>ARNO</span>
-              <span>aché</span>
+              <img src="assets/images/logo-yoki.png" alt="Yoki" />
+              <img src="assets/images/logo-luft.png" alt="Luft" />
+              <img src="assets/images/logo-goodyear.png" alt="Goodyear" />
+              <img src="assets/images/logo-danone.png" alt="Danone" />
+              <img src="assets/images/logo-arno.png" alt="Arno" />
+              <img src="assets/images/logo-ache.png" alt="Aché" />
+              <img src="assets/images/logo-solistica.png" alt="Solistica" />
+              <img src="assets/images/logo-ceratti.png" alt="Ceratti" />
+              <img src="assets/images/logo-yoki.png" alt="Yoki" />
+              <img src="assets/images/logo-luft.png" alt="Luft" />
             </div>
           </div>
         </div>
       </section>
 
       <section class="cta-ribbon" aria-label="Chamada para contato">
-        <div class="cta-ribbon__card" data-reveal>
-          <div class="cta-ribbon__copy">
-            <p>
-              A Bora Transportes superou desafios e alcançou resultados expressivos com a Easy Doc.
-              <strong>E você, está pronto para a sua transformação digital?</strong>
-            </p>
-          </div>
-          <img src="assets/images/testimonial-exec.png" alt="Especialista da Easy Doc" />
-        </div>
+        <img
+          class="cta-ribbon__image"
+          src="assets/images/cta-banner.png?v=figma-1"
+          alt="A Bora Transportes superou desafios e alcançou resultados expressivos com a Easy Doc. E você, está pronto para a sua transformação digital?"
+          data-reveal
+        />
       </section>
 
       <section class="section contact-section" id="contato">

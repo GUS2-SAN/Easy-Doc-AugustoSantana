@@ -208,6 +208,11 @@
 
     if (!header || !menuToggle) return;
 
+    const closeMenu = () => {
+      header.classList.remove("is-menu-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    };
+
     menuToggle.addEventListener("click", () => {
       const isOpen = header.classList.toggle("is-menu-open");
       menuToggle.setAttribute("aria-expanded", String(isOpen));
@@ -215,8 +220,62 @@
 
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
-        header.classList.remove("is-menu-open");
-        menuToggle.setAttribute("aria-expanded", "false");
+        closeMenu();
+      });
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeMenu();
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.matchMedia("(min-width: 1025px)").matches) closeMenu();
+    });
+  }
+
+  /**
+   * Suaviza a navegacao por ancoras compensando a altura do header fixo.
+   * Isso evita que titulos fiquem escondidos atras do menu apos o clique.
+   */
+  function initAnchorNavigation() {
+    const header     = document.querySelector(".site-header");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks   = /** @type {HTMLAnchorElement[]} */ ([...document.querySelectorAll(".site-nav a")]);
+    const anchorLinks = /** @type {HTMLAnchorElement[]} */ ([
+      ...document.querySelectorAll('a[href^="#"]'),
+    ]);
+
+    const closeMenu = () => {
+      header?.classList.remove("is-menu-open");
+      menuToggle?.setAttribute("aria-expanded", "false");
+    };
+
+    const setActiveLink = (href) => {
+      navLinks.forEach((link) => {
+        link.classList.toggle("is-active", link.getAttribute("href") === href);
+      });
+    };
+
+    anchorLinks.forEach((link) => {
+      const href = link.getAttribute("href");
+      if (!href || href === "#") return;
+
+      const target = document.getElementById(href.slice(1));
+      if (!target) return;
+
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        closeMenu();
+        setActiveLink(href);
+
+        const offset = (header?.offsetHeight ?? 0) + 18;
+        const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - offset);
+
+        window.scrollTo({ top, behavior: "smooth" });
+
+        if (window.history?.pushState) {
+          window.history.pushState(null, "", href);
+        }
       });
     });
   }
@@ -854,6 +913,7 @@
     const zipField   = /** @type {HTMLInputElement|null} */ (getField("zip"));
     const stateField = /** @type {HTMLSelectElement|null} */ (getField("state"));
     const submitBtn  = /** @type {HTMLButtonElement|null} */ (getField("submit"));
+    const submitBtnInitialHtml = submitBtn?.innerHTML ?? "";
 
     phoneField?.addEventListener("input", (e) => {
       /** @type {HTMLInputElement} */ (e.target).value = maskPhone(/** @type {HTMLInputElement} */ (e.target).value);
@@ -899,7 +959,7 @@
 
       if (submitBtn) {
         submitBtn.disabled    = true;
-        submitBtn.textContent = "Enviando…";
+        submitBtn.innerHTML   = "<span>Enviando...</span>";
       }
 
       try {
@@ -911,7 +971,7 @@
       } finally {
         if (submitBtn) {
           submitBtn.disabled    = false;
-          submitBtn.textContent = "Enviar";
+          submitBtn.innerHTML   = submitBtnInitialHtml;
         }
       }
     });
@@ -930,6 +990,7 @@
   function init() {
     initHeaderScroll();
     initMobileMenu();
+    initAnchorNavigation();
     initSectionObserver();
     initRevealOnScroll();
     initVideoEmbeds();

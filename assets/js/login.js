@@ -58,6 +58,8 @@
     submitButton:   /** @type {HTMLButtonElement}  */ (form.querySelector(".auth-submit")),
   };
 
+  const submitButtonInitialHtml = EL.submitButton.innerHTML;
+
   // ============================================================
   // ESTADO LOCAL
   // ============================================================
@@ -282,8 +284,8 @@
       return;
     }
 
-    EL.submitButton.disabled    = true;
-    EL.submitButton.textContent = "Entrando…";
+    EL.submitButton.disabled  = true;
+    EL.submitButton.innerHTML = "<span>Entrando...</span>";
     showFeedback("Validando acesso…", "info");
 
     const credentials = {
@@ -297,7 +299,7 @@
     try {
       await authenticateUser(credentials);
       showFeedback(
-        "Acesso validado com sucesso. Integração real não faz parte do escopo demonstrativo.",
+        "Acesso validado com sucesso. Preparando o ambiente do portal...",
         "success",
       );
       resetForm();
@@ -307,8 +309,8 @@
         "error",
       );
     } finally {
-      EL.submitButton.disabled    = false;
-      EL.submitButton.textContent = "Acessar portal";
+      EL.submitButton.disabled  = false;
+      EL.submitButton.innerHTML = submitButtonInitialHtml;
     }
   });
 })();

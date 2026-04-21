@@ -12,7 +12,10 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+    <link rel="alternate icon" type="image/png" href="assets/images/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
+    <link rel="stylesheet" href="assets/css/style.css?v=landing-polish-7" />
     <style>
       /* ============================================================
          Estilos exclusivos desta página — prefixo .login-* para
@@ -287,8 +290,14 @@
 
         <div class="site-actions">
           <a class="top-cta" href="index.html#contato">Solicitar demonstração</a>
-          <a href="login.html" class="action-link" aria-current="page">Login</a>
-          <a href="suporte.html" class="action-link">Suporte</a>
+          <a href="login.html" class="action-link" aria-current="page">
+            <img class="action-link__icon" src="assets/images/icon-login.png" alt="" aria-hidden="true" />
+            <span>Login</span>
+          </a>
+          <a href="suporte.html" class="action-link">
+            <img class="action-link__icon" src="assets/images/icon-support.png" alt="" aria-hidden="true" />
+            <span>Suporte</span>
+          </a>
         </div>
       </div>
     </header>
@@ -297,7 +306,7 @@
       <div class="auth-shell">
 
         <!-- Hero: esquerda vermelha -->
-        <article class="login-hero" aria-label="Apresentação do portal Easy Doc">
+        <article class="login-hero" aria-label="Apresentação do portal Easy Doc" data-reveal>
           <div class="login-hero__ring login-hero__ring--a" aria-hidden="true"></div>
           <div class="login-hero__ring login-hero__ring--b" aria-hidden="true"></div>
 
@@ -339,7 +348,7 @@
         </article>
 
         <!-- Card: direita branca -->
-        <section class="login-card" aria-labelledby="login-heading">
+        <section class="login-card" aria-labelledby="login-heading" data-reveal>
           <img
             src="assets/images/logo-mark.png?v=logo-safe-3"
             alt="Easy Doc"
@@ -348,10 +357,11 @@
             height="auto"
           />
 
-          <span class="login-card__eyebrow" aria-hidden="true">Área segura demonstrativa</span>
+          <span class="login-card__eyebrow" aria-hidden="true">Área segura corporativa</span>
           <h2 class="login-card__heading" id="login-heading">Entrar na conta</h2>
           <p class="login-card__desc">
-            Preencha dados fictícios para validar a experiência visual do login.
+            Acesse o portal com seu e-mail corporativo para acompanhar comprovantes,
+            pendências e status da operação.
           </p>
 
           <form id="login-form" class="compact-form" novalidate aria-label="Formulário de acesso">
@@ -435,8 +445,8 @@
           <hr class="login-card__divider" aria-hidden="true" />
 
           <div class="login-card__footer">
-            <span>Ambiente demonstrativo</span>
-            <a href="index.html">Voltar para a landing</a>
+            <span>Ambiente seguro</span>
+            <a href="index.html">Voltar para o site</a>
           </div>
         </section>
 
